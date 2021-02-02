@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { randomizeHand, determineWinner } from "./game";
+import { GameVisualization } from "./GameVisualization";
+import { HandChooser } from "./HandChooser";
+import { Winner } from "./Winner";
 
 function App() {
+  const [game, setGame] = useState({
+    playerHand: null,
+    opponentHand: null,
+    winner: null,
+  });
+
+  const chooseHand = (playerHand) => {
+    const opponentHand = randomizeHand();
+    const winner = determineWinner(playerHand, opponentHand);
+    setGame({
+      playerHand,
+      opponentHand,
+      winner,
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <HandChooser handleSetHand={chooseHand} />
+      <GameVisualization
+        playerHand={game.playerHand}
+        opponentHand={game.opponentHand}
+      />
+      <Winner winner={game.winner} />
     </div>
   );
 }
