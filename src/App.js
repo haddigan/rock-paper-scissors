@@ -1,35 +1,20 @@
-import { useState } from "react";
 import "./App.css";
-import { randomizeHand, determineWinner } from "./game";
+import { useGame } from "./game/useGame";
 import { GameVisualization } from "./GameVisualization";
 import { HandChooser } from "./HandChooser";
 import { Winner } from "./Winner";
 
 function App() {
-  const [game, setGame] = useState({
-    playerHand: null,
-    opponentHand: null,
-    winner: null,
-  });
-
-  const chooseHand = (playerHand) => {
-    const opponentHand = randomizeHand();
-    const winner = determineWinner(playerHand, opponentHand);
-    setGame({
-      playerHand,
-      opponentHand,
-      winner,
-    });
-  };
+  const [{ playerHand, opponentHand, winner }, playGame] = useGame();
 
   return (
     <div>
-      <HandChooser handleSetHand={chooseHand} />
+      <HandChooser handleSetHand={playGame} />
       <GameVisualization
-        playerHand={game.playerHand}
-        opponentHand={game.opponentHand}
+        playerHand={playerHand}
+        opponentHand={opponentHand}
+        winner={<Winner winner={winner} />}
       />
-      <Winner winner={game.winner} />
     </div>
   );
 }
