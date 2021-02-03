@@ -1,0 +1,13 @@
+.gameVisualization {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playedHand {
+  font-size: 3em;
+  margin: 1rem;
+}
+.winner {
+  composes: playedHand;
+  font-size: 6em;
+}
