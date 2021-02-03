@@ -1,16 +1,26 @@
 import { ROCK, PAPER, SCISSORS, handData } from "./game";
+import styles from "./HandChooser.module.css";
+
 export const HandChooser = ({ handleSetHand }) => {
   return (
-    <div style={{ fontSize: "3em", display: "flex" }}>
-      <button onClick={() => handleSetHand(PAPER)}>
-        {handData.get(PAPER).label}
-      </button>
-      <button onClick={() => handleSetHand(ROCK)}>
+    <div className={styles.handChooser}>
+      <HandButton handleSetHand={() => handleSetHand(ROCK)}>
         {handData.get(ROCK).label}
-      </button>
-      <button onClick={() => handleSetHand(SCISSORS)}>
+      </HandButton>
+      <HandButton handleSetHand={() => handleSetHand(PAPER)}>
+        {handData.get(PAPER).label}
+      </HandButton>
+      <HandButton handleSetHand={() => handleSetHand(SCISSORS)}>
         {handData.get(SCISSORS).label}
-      </button>
+      </HandButton>
     </div>
+  );
+};
+
+export const HandButton = ({ handleSetHand, children }) => {
+  return (
+    <button className={styles.handButton} onClick={handleSetHand}>
+      {children}
+    </button>
   );
 };

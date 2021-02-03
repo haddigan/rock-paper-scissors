@@ -1,0 +1,11 @@
+.handChooser {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.handButton {
+  border: 0;
+  font-size: 6em;
+  background: transparent;
+  cursor: pointer;
+}
