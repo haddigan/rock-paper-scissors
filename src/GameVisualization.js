@@ -24,7 +24,7 @@ export const GameVisualization = ({ playerHand, opponentHand, winner }) => {
 
 export const Hand = ({ children, isWinner }) => {
   return (
-    <div className={isWinner ? styles.playedHand : styles.winner}>
+    <div className={isWinner ? styles.winner : styles.playedHand}>
       {children}
     </div>
   );
