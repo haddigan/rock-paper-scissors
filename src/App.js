@@ -2,7 +2,6 @@ import "./App.css";
 import { useGame } from "./game/useGame";
 import { GameVisualization } from "./GameVisualization";
 import { HandChooser } from "./HandChooser";
-import { Winner } from "./Winner";
 
 function App() {
   const [{ playerHand, opponentHand, winner }, playGame] = useGame();
@@ -13,7 +12,7 @@ function App() {
       <GameVisualization
         playerHand={playerHand}
         opponentHand={opponentHand}
-        winner={<Winner winner={winner} />}
+        winner={winner}
       />
     </div>
   );
